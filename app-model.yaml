@@ -10,13 +10,13 @@ topology:
         'app-server':
             DynamicServers:
                 ServerTemplate:  'cluster-template'
-                ServerNamePrefix: 'managed-server'
+                ServerNamePrefix: 'managed'
     Server:
         'admin-server':
             ListenPort: 7001
     ServerTemplate:
         'cluster-template':
-            Cluster: 'app'
+            Cluster: 'app-server'
             ListenPort: 8001
 
 appDeployments:
