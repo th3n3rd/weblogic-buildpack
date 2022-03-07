@@ -16,6 +16,4 @@ pack build weblogic-sample-app \
   --buildpack . \
   --verbose
 
-docker run -it --rm weblogic-sample-app /bin/sh
-
-echo "It works!"
+echo "Done!"
