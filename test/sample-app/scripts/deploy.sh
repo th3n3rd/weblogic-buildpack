@@ -20,3 +20,12 @@ echo "Deploying ingress"
 envsubst < deployment/ingress.yaml.tpl | kubectl apply -n "$NAMESPACE" -f -
 
 timeout --foreground 300s ./scripts/healthcheck.sh http://sample-app.weblogic.k8s/actuator/health
+
+echo "Running smoke test"
+RESULT=$(curl -s http://sample-app.weblogic.k8s)
+if [[ ! "$RESULT" =~ "Hello World!" ]]; then
+    echo "Smoke test failed"
+    exit 1
+fi
+
+echo "The application has been successfully deployed!"

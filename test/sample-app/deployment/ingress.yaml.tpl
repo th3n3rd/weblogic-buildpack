@@ -7,13 +7,13 @@ metadata:
   annotations:
     # use the shared ingress-nginx
     kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/rewrite-target: /app/\$1
+    nginx.ingress.kubernetes.io/rewrite-target: /app/$1
 spec:
   rules:
   - host: sample-app.weblogic.k8s
     http:
       paths:
-      - path: /(.+)
+      - path: /(.*)
         pathType: ImplementationSpecific
         backend:
           service:
