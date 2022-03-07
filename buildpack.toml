@@ -1,0 +1,17 @@
+api = "0.6" # lifecycle compatibility version
+
+[buildpack] # buildpack metadata used by the lifecycle
+  id = "com.example.weblogic-model-in-image"
+  name = "WebLogic Model in Image Buildpack"
+  version = "0.0.1"
+
+[[stacks]] # stacks compatibility
+  id = "io.buildpacks.stacks.bionic"
+
+[metadata]
+  [[metadata.dependencies]] # dependencies into the final image (should be compatible with the stack)
+    id = "weblogic-deploy"
+    uri = "https://github.com/oracle/weblogic-deploy-tooling/releases/download/release-2.1.0/weblogic-deploy.tar.gz"
+    sha256 = "e1d41b9d47f2bd0c505fdde8c23fdbd199aba1e98cbd4bba451739d8893ff7f6"
+    version = "2.1.0"
+    stacks = ["io.buildpacks.stacks.bionic"]
