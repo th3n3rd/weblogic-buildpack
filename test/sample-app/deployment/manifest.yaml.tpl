@@ -36,7 +36,7 @@ spec:
   clusters:
   - clusterName: app-server
     serverStartState: "RUNNING"
-    replicas: 2
+    replicas: 1
   restartVersion: '1'
   configuration:
     model:
