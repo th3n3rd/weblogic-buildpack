@@ -122,7 +122,7 @@ func InstallWeblogicDeployTool(context packit.BuildContext) (packit.Layer, error
 
 	buildpackDescPath := filepath.Join(context.CNBPath, "buildpack.toml")
 	installationDir := filepath.Join(layer.Path, toolName)
-	installationSymlink := filepath.Join(context.WorkingDir, toolName)
+	destinationDir := filepath.Join(context.WorkingDir, toolName)
 
 	deployTool, err := service.Resolve(buildpackDescPath, toolName, "2.1.0", context.Stack)
 	if err != nil {
@@ -138,7 +138,7 @@ func InstallWeblogicDeployTool(context packit.BuildContext) (packit.Layer, error
 		return packit.Layer{}, err
 	}
 
-	err = CopyContent(installationDir, installationSymlink)
+	err = CopyContent(installationDir, destinationDir)
 	if err != nil {
 		return packit.Layer{}, err
 	}
