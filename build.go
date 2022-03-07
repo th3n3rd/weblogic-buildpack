@@ -103,7 +103,7 @@ func PrepareApplicationArchive(sourceDir string) (string, error) {
 }
 
 func InstallWeblogicDeployTool(context packit.BuildContext) (packit.Layer, error) {
-	layer, err := context.Layers.Get("weblogic-deploy-ool")
+	layer, err := context.Layers.Get("weblogic-deploy-tool")
 	if err != nil {
 		return packit.Layer{}, err
 	}
