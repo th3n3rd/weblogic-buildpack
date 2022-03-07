@@ -11,6 +11,7 @@ topology:
             DynamicServers:
                 ServerTemplate:  'cluster-template'
                 ServerNamePrefix: 'managed'
+                CalculatedListenPorts: false
     Server:
         'admin-server':
             ListenPort: 7001
