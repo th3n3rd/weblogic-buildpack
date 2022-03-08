@@ -10,7 +10,7 @@ topology:
         'app-server':
             DynamicServers:
                 ServerTemplate:  'cluster-template'
-                ServerNamePrefix: 'managed'
+                ServerNamePrefix: 'app-server'
                 DynamicClusterSize: 1
                 CalculatedListenPorts: false
     Server:
