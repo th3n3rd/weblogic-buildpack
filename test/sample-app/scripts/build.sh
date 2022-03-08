@@ -3,17 +3,22 @@
 set -e
 
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+export AUX_CONTAINER_IMAGE="weblogic-sample-app"
 
 cd "$SCRIPT_DIR/.."
 
-echo "Running the cloud native buildpack by trying to build a sample app"
-pack build weblogic-sample-app \
-  --path test/sample-app \
+set -o allexport
+source .env
+set +o allexport
+
+echo "Deploying weblogic sample application"
+pack build "$AUX_CONTAINER_IMAGE" \
+  --path . \
   --builder paketobuildpacks/builder:base \
   --buildpack paketo-buildpacks/bellsoft-liberica \
   --buildpack paketo-buildpacks/syft \
   --buildpack paketo-buildpacks/maven \
-  --buildpack . \
+  --buildpack ../.. \
   --verbose
 
 echo "Done!"

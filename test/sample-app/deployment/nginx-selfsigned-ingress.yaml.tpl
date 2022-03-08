@@ -5,18 +5,22 @@ metadata:
   labels:
     weblogic.domainUID: $DOMAIN
   annotations:
-    # use the shared ingress-nginx
     kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/rewrite-target: /app/$1
+    ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "self-signed-cluster-issuer"
 spec:
   rules:
-  - host: sample-app.weblogic.k8s
+  - host: $INGRESS_HOST
     http:
       paths:
-      - path: /(.*)
+      - path: /
         pathType: ImplementationSpecific
         backend:
           service:
             name: $DOMAIN-cluster-app-server
             port:
               number: 8001
+  tls:
+  - hosts:
+    - $INGRESS_HOST
+    secretName: $DOMAIN-cert

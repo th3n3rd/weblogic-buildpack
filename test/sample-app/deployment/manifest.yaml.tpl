@@ -7,7 +7,7 @@ metadata:
 spec:
   domainHomeSourceType: FromModel
   domainHome: /u01/domains/$DOMAIN
-  image: "container-registry.oracle.com/middleware/weblogic:12.2.1.4"
+  image: "$WLS_CONTAINER_IMAGE"
   imagePullPolicy: "IfNotPresent"
   webLogicCredentialsSecret:
     name: $DOMAIN-weblogic-credentials
@@ -23,7 +23,7 @@ spec:
     - name: USER_MEM_ARGS
       value: "-XX:+UseContainerSupport -Djava.security.egd=file:/dev/./urandom "
     auxiliaryImages:
-    - image: "$CONTAINER_IMAGE"
+    - image: "$AUX_CONTAINER_IMAGE"
       imagePullPolicy: IfNotPresent
       volume: auxiliaryImage
   adminServer:

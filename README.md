@@ -12,6 +12,47 @@ The operator supports different [ways](https://oracle.github.io/weblogic-kuberne
 
 This buildpack supports only the [Model in Image with auxiliary images](https://oracle.github.io/weblogic-kubernetes-operator/userguide/managing-domains/model-in-image/auxiliary-images/).
 
+## Build and Test
+
+There are some pre-requisites in order to showcase this buildpack:
+
+1. Kubernetes cluster
+2. [Oracle WebLogic Operator](https://oracle.github.io/weblogic-kubernetes-operator/userguide/managing-operators/installation/)
+3. [Nginx](https://bitnami.com/stack/nginx-ingress-controller/helm) or [Contour](https://bitnami.com/stack/contour-operator/helm) Ingress Controller
+
+First build the buildpack by running
+
+```shell
+./scripts/build.sh
+```
+
+Then we can try out the buildpack by building a sample application and eventually deploy it leveraging the Oracle WebLogic Operator:
+
+```shell
+./test/sample-app/scripts/build.sh
+./test/sample-app/scripts/deploy.sh
+```
+
+The scripts mentioned above will use the following parameters:
+
+```shell
+DOMAIN="sample-domain"
+AUX_CONTAINER_IMAGE="weblogic-sample-app"
+WLS_CONTAINER_IMAGE="container-registry.oracle.com/middleware/weblogic:12.2.1.4"
+INGRESS_HOST="weblogic-sample-domain.example.com"
+INGRESS_VARIANT="nginx"
+```
+
+In order to override these settings you can provide a `.env` file, placed under `test/sample-app`, and provide
+the overrides using the same variable names.
+
+If you want to expose the application using a different setup for the ingress you can use one of the following variants:
+
+* `nginx-selfsigned`: this requires to have the `cert-manager` operator setup with a self-signed cluster issuer
+* `contour-letsencrypt`: this requires to have the `cert-manager` operator setup with `Let's Encrypt`
+
+Or provide a new ingress configuration under `test/sample-app/deployment` following the convention `<ingress-variant>-ingress.yaml.tpl`
+
 ## Caveats
 
 1. Need to fix the Oracle WebLogic Operator installation as the one of the scripts it includes has a [bug](https://github.com/oracle/weblogic-kubernetes-operator/issues/2819#issuecomment-1060816388)
