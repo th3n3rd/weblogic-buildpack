@@ -29,7 +29,7 @@ First build the buildpack by running
 Then we can try out the buildpack by building a sample application and eventually deploy it leveraging the Oracle WebLogic Operator:
 
 ```shell
-./test/sample-app/scripts/build.sh
+./test/sample-app/scripts/build.sh # you will need to manually publish the image before running deploy.sh
 ./test/sample-app/scripts/deploy.sh
 ```
 
