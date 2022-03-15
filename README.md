@@ -19,6 +19,7 @@ There are some pre-requisites in order to showcase this buildpack:
 1. Kubernetes cluster
 2. [Oracle WebLogic Operator](https://oracle.github.io/weblogic-kubernetes-operator/userguide/managing-operators/installation/)
 3. [Nginx](https://bitnami.com/stack/nginx-ingress-controller/helm) or [Contour](https://bitnami.com/stack/contour-operator/helm) Ingress Controller
+4. [Go](https://go.dev/doc/install)
 
 First build the buildpack by running
 
