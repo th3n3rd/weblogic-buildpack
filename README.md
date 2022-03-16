@@ -62,7 +62,7 @@ and some scripts are written with non-POSIX compliant instructions and with the 
 This is how the operator can be fixed:
 * Download the operator source code (by the way this step is also part their standard installation)
 * Replace `#!/bin/sh` with `#!/bin/bash` in the `operator/src/main/resources/scripts/auxImage.sh` script
-* Run `mvn clean package` in the root
+* Run `mvn clean package` in the root (you'll need `python` command available)
 * Run `./buildDockerImage.sh -t <your-custom-image-name>`
 * Follow the installation instruction remembering to use `<your-custom-image-name>` image as reference
 
