@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: $DOMAIN-ingress
@@ -17,8 +17,10 @@ spec:
     http:
         paths:
         - backend:
-            serviceName: $DOMAIN-cluster-app-server
-            servicePort: 8001
+            service:
+                name: $DOMAIN-cluster-app-server
+                port:
+                    number: 8001
           path: /
           pathType: ImplementationSpecific
   tls:
